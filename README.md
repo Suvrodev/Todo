@@ -2,24 +2,37 @@
 
 ### Types in useState
 
-- const [filterTask, setFilterTask] = useState<ITask[]>([]);
+`bash const [filterTask, setFilterTask] = useState<ITask[]>([]);`
 
-### Types in Dropdown
-
-- const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {setPriority(event?.target?.value);};
-
-### Types in Check box
-
-- const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {setIsChecked(event.target.checked);};
-
-### Types in Check Form
-
-- const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {}
+- urls: https://github.com/Suvrodev/Todo/blob/main/src/utilities/filterTask.ts
 
 ### Types in set data from props in useState
 
-- const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-  setPriority(event?.target?.value as "Low" | "High" | "Medium");
-  };
+    ```bash const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setPriority(event?.target?.value as "Low" | "High" | "Medium");
+    };```
 
-### Types in Check Box
+- https://github.com/Suvrodev/Todo/blob/main/src/Layout/Pages/Task/UpdateTaskModal/UpdateTaskModal.tsx
+
+### Types in Dropdown
+
+    ```bash const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setPriority(event?.target?.value);
+    } ```
+
+- https://github.com/Suvrodev/Todo/blob/main/src/Layout/Pages/Task/AddTaskModal/AddTaskModal.tsx
+
+### Types in Check box
+
+````bash const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
+setIsChecked(event.target.checked);
+};```
+````
+
+- https://github.com/Suvrodev/Todo/blob/main/src/Layout/Pages/Task/TaskCard/TaskCard.tsx
+
+### Types in Form
+
+    ```bash const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {}```
+
+- https://github.com/Suvrodev/Todo/blob/main/src/Layout/Pages/Task/AddTaskModal/AddTaskModal.tsx
