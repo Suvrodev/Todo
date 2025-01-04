@@ -4,7 +4,7 @@
 
 `bash const [filterTask, setFilterTask] = useState<ITask[]>([]);`
 
-- urls: https://github.com/Suvrodev/Todo/blob/main/src/utilities/filterTask.ts
+- https://github.com/Suvrodev/Todo/blob/main/src/utilities/filterTask.ts
 
 ### Types in set data from props in useState
 
@@ -35,7 +35,3 @@
     ```bash const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {}```
 
 - https://github.com/Suvrodev/Todo/blob/main/src/Layout/Pages/Task/AddTaskModal/AddTaskModal.tsx
-
-```
-
-```
