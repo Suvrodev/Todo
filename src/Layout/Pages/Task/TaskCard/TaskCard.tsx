@@ -9,6 +9,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { ITask } from "@/Types/types";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useEffect, useState } from "react";
+import UpdateTaskModal from "../UpdateTaskModal/UpdateTaskModal";
 
 interface IProps {
   task: ITask;
@@ -50,6 +51,7 @@ const TaskCard = ({ task }: IProps) => {
           <p className="font-bold">({task.priority})</p>
         </div>
         <div className="flex gap-3 items-center">
+          <UpdateTaskModal task={task} />
           <Button
             variant="link"
             className="p-0 text-red-500"

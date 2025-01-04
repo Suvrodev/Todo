@@ -43,8 +43,35 @@ export const taskSlice = createSlice({
       console.log("id, ", action.payload);
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+    updateTask: (state, action) => {
+      const { id, taskData } = action.payload;
+      console.log("id: ", id, "data: ", taskData);
+
+      state.tasks.forEach((task) =>
+        // task.id === id
+        //   ? // ? (task.title = taskData.title)
+        //     {
+        //       ...task,
+        //       title: taskData.title,
+        //       desc: taskData.desc,
+        //       dueDate: taskData.dueDate,
+        //       priority: taskData.priority,
+        //     }
+        //   : task
+
+        {
+          if (task.id === id) {
+            task.title = taskData.title;
+            task.desc = taskData.desc;
+            task.dueDate = taskData.dueDate;
+            task.priority = taskData.priority;
+          }
+        }
+      );
+    },
   },
 });
 
-export const { addTask, toggleCompleteState, deleteTask } = taskSlice.actions;
+export const { addTask, toggleCompleteState, deleteTask, updateTask } =
+  taskSlice.actions;
 export default taskSlice.reducer;
