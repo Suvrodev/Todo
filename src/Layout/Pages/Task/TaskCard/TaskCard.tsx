@@ -5,7 +5,7 @@ import {
   deleteTask,
   toggleCompleteState,
 } from "@/redux/features/task/taskSlice";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { ITask } from "@/Types/types";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -16,9 +16,11 @@ interface IProps {
 }
 const TaskCard = ({ task }: IProps) => {
   // console.log("Task", task);
-  const { id, isCompleted } = task;
+  const { id, isCompleted, assignedBy, dueDate } = task;
   const [isChecked, setIsChecked] = useState(false);
 
+  const { users } = useAppSelector((state) => state.users);
+  // console.log("users:", users);
   const dispatch = useAppDispatch();
   const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
@@ -32,6 +34,8 @@ const TaskCard = ({ task }: IProps) => {
   const handleDelete = () => {
     dispatch(deleteTask(id));
   };
+
+  const assignedPerson = users.find((user) => user.id === assignedBy);
 
   return (
     <div className="border px-5 py-3 rounded-lg">
@@ -66,7 +70,16 @@ const TaskCard = ({ task }: IProps) => {
           />
         </div>
       </div>
-      <p className="mt-5"> {task.desc} </p>
+      <p className="my-5"> {task.desc} </p>
+      <div className="flex justify-between">
+        <p className="">{dueDate}</p>
+        <p>
+          Assigned by :
+          <span className="font-bold">
+            {assignedPerson ? assignedPerson?.name : "No Name"}
+          </span>
+        </p>
+      </div>
     </div>
   );
 };

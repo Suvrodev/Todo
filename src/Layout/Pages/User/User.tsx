@@ -16,7 +16,7 @@ const User = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-x-40">
+      <div className="grid grid-cols-3 gap-x-4 gap-y-4">
         {users.map((user, idx) => (
           <UserCard key={idx} user={user} />
         ))}

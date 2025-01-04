@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   //   DialogDescription,
   DialogFooter,
@@ -9,17 +10,22 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { addTask } from "@/redux/features/task/taskSlice";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { ITask, TPriority } from "@/Types/types";
 import { ChangeEvent, useState } from "react";
 
 const AddTaskModal = () => {
   const dispatch = useAppDispatch();
-
+  const { users } = useAppSelector((state) => state.users);
   //For Dopdown
   const [priority, setPriority] = useState<TPriority>("Medium");
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setPriority(event?.target?.value as TPriority);
+  };
+
+  const [assignedBy, setAssignedBy] = useState<string>("");
+  const handleAssignedBy = (event: ChangeEvent<HTMLSelectElement>) => {
+    setAssignedBy(event.target?.value);
   };
   // console.log("Priority: ", priority);
 
@@ -35,6 +41,7 @@ const AddTaskModal = () => {
       desc,
       dueDate,
       priority,
+      assignedBy,
     };
     // console.log("Form Data: ", title, desc, date, priority);
     dispatch(addTask(taskData as ITask));
@@ -92,8 +99,25 @@ const AddTaskModal = () => {
               <option value="Low">Low</option>
             </select>
           </div>
+
+          <div className="flex flex-col gap-2 items-start ">
+            <p>Assigned By</p>
+            <select
+              id="assignedBy"
+              onChange={handleAssignedBy}
+              className="border border-gray-300 rounded-md p-2 text-sm"
+            >
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
+            <DialogClose asChild>
+              <Button type="submit">Save changes</Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>

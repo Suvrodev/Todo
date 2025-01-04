@@ -5,6 +5,7 @@ export interface ITask {
   dueDate: string;
   isCompleted: boolean;
   priority: TPriority;
+  assignedBy: string | null;
 }
 
 export type TPriority = "Low" | "Medium" | "High";

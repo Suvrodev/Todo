@@ -12,33 +12,37 @@ const initialState: IinitialState = {
       id: "1",
       title: "Title-1",
       desc: "Title-1 Desc",
-      dueDate: "1",
+      dueDate: "1/1/25",
       isCompleted: true,
       priority: "High",
+      assignedBy: "1",
     },
     {
       id: "2",
       title: "Title-2",
       desc: "Title-2 Desc",
-      dueDate: "1",
+      dueDate: "1/12/24",
       isCompleted: true,
       priority: "Medium",
+      assignedBy: "3",
     },
     {
       id: "3",
       title: "Title-3",
       desc: "Title-1 Desc",
-      dueDate: "3",
+      dueDate: "2/1/25",
       isCompleted: true,
       priority: "Low",
+      assignedBy: "3",
     },
     {
       id: "4",
       title: "Title-4",
       desc: "Title-1 Desc",
-      dueDate: "1",
+      dueDate: "10/1/25",
       isCompleted: true,
       priority: "High",
+      assignedBy: "2",
     },
   ],
   filter: "All",
@@ -61,6 +65,10 @@ export const taskSlice = createSlice({
     addTask: (state, action: PayloadAction<ITask>) => {
       // addTask: (state, action) => {
       const taskData = createTask(action.payload);
+      console.log("TaskData: ", taskData);
+      if (!taskData.assignedBy) {
+        taskData.assignedBy = null;
+      }
       state.tasks.push(taskData as ITask);
     },
     toggleCompleteState: (state, action) => {
@@ -73,12 +81,11 @@ export const taskSlice = createSlice({
       // console.log("ALl Task: ", state.tasks);
     },
     deleteTask: (state, action: PayloadAction<string>) => {
-      console.log("id, ", action.payload);
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     updateTask: (state, action) => {
       const { id, taskData } = action.payload;
-      console.log("id: ", id, "data: ", taskData);
+      // console.log("id: ", id, "data: ", taskData);
 
       state.tasks.forEach((task) => {
         if (task.id === id) {
@@ -86,6 +93,7 @@ export const taskSlice = createSlice({
           task.desc = taskData.desc;
           task.dueDate = taskData.dueDate;
           task.priority = taskData.priority;
+          task.assignedBy = taskData.assignedBy;
         }
       });
     },
