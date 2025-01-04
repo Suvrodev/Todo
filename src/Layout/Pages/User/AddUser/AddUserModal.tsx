@@ -8,11 +8,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { addUser } from "@/redux/features/user/userSlice";
+import { useAppDispatch } from "@/redux/hook";
+import { IUsers } from "@/Types/types";
 import { FormEvent } from "react";
 
 const AddUserModal = () => {
+  const dispatch = useAppDispatch();
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const Form = event.target as HTMLFormElement;
+
+    const name = Form.namee.value;
+    const userData = { name };
+    dispatch(addUser(userData as IUsers));
   };
   return (
     <Dialog>
@@ -33,7 +42,7 @@ const AddUserModal = () => {
             <p>Name</p>
             <input
               type="text"
-              name="name"
+              name="namee"
               id=""
               placeholder="Task Title"
               className="w-full bg-transparent border-2 rounded-md py-2 px-4"

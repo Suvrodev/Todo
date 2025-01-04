@@ -4,6 +4,7 @@ import UserCard from "./UserCard/UserCard";
 
 const User = () => {
   const { users } = useAppSelector((state) => state.users);
+  // console.log(users);
 
   return (
     <div>
