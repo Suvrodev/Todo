@@ -10,16 +10,16 @@ import {
 } from "@/components/ui/dialog";
 import { addTask } from "@/redux/features/task/taskSlice";
 import { useAppDispatch } from "@/redux/hook";
-import { ITask } from "@/Types/types";
+import { ITask, TPriority } from "@/Types/types";
 import { ChangeEvent, useState } from "react";
 
 const AddTaskModal = () => {
   const dispatch = useAppDispatch();
 
   //For Dopdown
-  const [priority, setPriority] = useState("Medium");
+  const [priority, setPriority] = useState<TPriority>("Medium");
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setPriority(event?.target?.value);
+    setPriority(event?.target?.value as TPriority);
   };
   // console.log("Priority: ", priority);
 

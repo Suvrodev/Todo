@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { updateTask } from "@/redux/features/task/taskSlice";
 import { useAppDispatch } from "@/redux/hook";
-import { ITask } from "@/Types/types";
+import { ITask, TPriority } from "@/Types/types";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { SquarePen } from "lucide-react";
 import { ChangeEvent, useState } from "react";
@@ -21,10 +21,10 @@ const UpdateTaskModal = ({ task }: IProps) => {
   //   console.log("Update task: ", task);
   const { id, title, desc, dueDate } = task;
 
-  const [priority, setPriority] = useState(task.priority);
+  const [priority, setPriority] = useState<TPriority>(task.priority);
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setPriority(event?.target?.value as "Low" | "High" | "Medium");
+    setPriority(event?.target?.value as TPriority);
   };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

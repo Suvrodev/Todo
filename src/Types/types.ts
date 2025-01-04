@@ -4,11 +4,7 @@ export interface ITask {
   desc: string;
   dueDate: string;
   isCompleted: boolean;
-  priority: "Low" | "Medium" | "High";
+  priority: TPriority;
 }
 
-// export enum Priority {
-//   Low = "Low",
-//   Medium = "Medium",
-//   High = "High",
-// }
+export type TPriority = "Low" | "Medium" | "High";
