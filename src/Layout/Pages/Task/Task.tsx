@@ -3,9 +3,9 @@ import TaskCard from "./TaskCard/TaskCard";
 import AddTaskModal from "./AddTaskModal/AddTaskModal";
 
 const Task = () => {
-  const { tasks, filter } = useAppSelector((state) => state.todo);
-  console.log("Tasks:", tasks);
-  console.log("Filter:", filter);
+  const { tasks } = useAppSelector((state) => state.todo);
+  // console.log("Tasks:", tasks);
+  // console.log("Filter:", filter);
   return (
     <div>
       <div className="flex justify-between items-center my-10">

@@ -8,29 +8,36 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
-
-// import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
+import { addTask } from "@/redux/features/task/taskSlice";
+import { useAppDispatch } from "@/redux/hook";
+import { ITask } from "@/Types/types";
+import { ChangeEvent, useState } from "react";
 
 const AddTaskModal = () => {
-  // type TPriority="High"|"Medium"|"Low";
-  const [priority, setPriority] = useState("Medium");
+  const dispatch = useAppDispatch();
 
-  const handleChange = (event) => {
-    setPriority(event.target.value);
+  //For Dopdown
+  const [priority, setPriority] = useState("Medium");
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setPriority(event?.target?.value);
   };
-  console.log("Priority: ", priority);
+  // console.log("Priority: ", priority);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const Form = event.target as HTMLFormElement;
-    const title = (Form.elements.namedItem("title") as HTMLInputElement).value;
-    const desc = Form.desc.value;
-    const date = Form.date.value;
-
-    console.log("Form Data: ", title, desc, date, priority);
+    const title: string = Form.titlee.value;
+    const desc: string = Form.desc.value;
+    const dueDate: string = Form.date.value;
+    const taskData = {
+      title,
+      desc,
+      dueDate,
+      priority,
+    };
+    // console.log("Form Data: ", title, desc, date, priority);
+    dispatch(addTask(taskData as ITask));
   };
   return (
     <Dialog>
@@ -51,7 +58,7 @@ const AddTaskModal = () => {
             <p>Title</p>
             <input
               type="text"
-              name="title"
+              name="titlee"
               id=""
               placeholder="Task Title"
               className="w-full bg-transparent border-2 rounded-md py-2 px-4"
@@ -62,7 +69,7 @@ const AddTaskModal = () => {
             <textarea
               name="desc"
               id=""
-              placeholder="Task Title"
+              placeholder="Task Description"
               className="w-full bg-transparent border-2 rounded-md  py-2 px-4"
             />
           </div>

@@ -1,13 +1,37 @@
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+// import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import {
+  deleteTask,
+  toggleCompleteState,
+} from "@/redux/features/task/taskSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { ITask } from "@/Types/types";
 import { Trash2 } from "lucide-react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface IProps {
   task: ITask;
 }
 const TaskCard = ({ task }: IProps) => {
+  // console.log("Task", task);
+  const { id, isCompleted } = task;
+  const [isChecked, setIsChecked] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+
+  useEffect(() => {
+    dispatch(toggleCompleteState({ id, isChecked }));
+  }, [isChecked, id, dispatch]);
+
+  ///Handle Delete
+  const handleDelete = () => {
+    dispatch(deleteTask(id));
+  };
+
   return (
     <div className="border px-5 py-3 rounded-lg">
       <div className="flex justify-between">
@@ -19,14 +43,25 @@ const TaskCard = ({ task }: IProps) => {
               "bg-red-500 ": task.priority === "Low",
             })}
           ></p>
-          {task.title}
+          <p className={`${isCompleted ? "line-through" : ""}`}>
+            {" "}
+            {task.title}
+          </p>
           <p className="font-bold">({task.priority})</p>
         </div>
         <div className="flex gap-3 items-center">
-          <Button variant="link" className="p-0 text-red-500">
+          <Button
+            variant="link"
+            className="p-0 text-red-500"
+            onClick={handleDelete}
+          >
             <Trash2 />
           </Button>
-          <Checkbox />
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleCheckBox}
+          />
         </div>
       </div>
       <p className="mt-5"> {task.desc} </p>

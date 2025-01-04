@@ -4,5 +4,11 @@ export interface ITask {
   desc: string;
   dueDate: string;
   isCompleted: boolean;
-  priority: "High" | "Medium" | "Low";
+  priority: "Low" | "Medium" | "High";
 }
+
+// export enum Priority {
+//   Low = "Low",
+//   Medium = "Medium",
+//   High = "High",
+// }

@@ -1,5 +1,5 @@
 import { ITask } from "@/Types/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 interface IinitialState {
   tasks: ITask[];
@@ -7,38 +7,44 @@ interface IinitialState {
 }
 
 const initialState: IinitialState = {
-  tasks: [
-    {
-      id: "1",
-      title: "Initialize Fronted",
-      desc: "Create Home page and Route",
-      dueDate: "2025-11",
-      isCompleted: false,
-      priority: "High",
-    },
-    {
-      id: "2",
-      title: "Set up Backend",
-      desc: "Configure database and API routes",
-      dueDate: "2025-12",
-      isCompleted: false,
-      priority: "Medium",
-    },
-    {
-      id: "3",
-      title: "Design UI",
-      desc: "Create wireframes and finalize design",
-      dueDate: "2026-01",
-      isCompleted: false,
-      priority: "Low",
-    },
-  ],
+  tasks: [],
   filter: "all",
 };
+
+// type DraftTask = Pick<ITask, "title" | "desc" | "dueDate" | "priority">;
+const createTask = (taskData: Partial<ITask>): Partial<ITask> => {
+  const newTask = {
+    id: nanoid(),
+    isCompleted: false,
+    ...taskData,
+  };
+  return newTask;
+};
+
 export const taskSlice = createSlice({
   name: "task",
   initialState,
-  reducers: {},
+  reducers: {
+    addTask: (state, action: PayloadAction<ITask>) => {
+      // addTask: (state, action) => {
+      const taskData = createTask(action.payload);
+      state.tasks.push(taskData as ITask);
+    },
+    toggleCompleteState: (state, action) => {
+      const { id, isChecked } = action.payload;
+      // console.log("id: ", id);
+      // console.log("isChecked: ", isChecked);
+      state.tasks.forEach((task) =>
+        task.id === id ? (task.isCompleted = isChecked) : task
+      );
+      // console.log("ALl Task: ", state.tasks);
+    },
+    deleteTask: (state, action) => {
+      console.log("id, ", action.payload);
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    },
+  },
 });
 
+export const { addTask, toggleCompleteState, deleteTask } = taskSlice.actions;
 export default taskSlice.reducer;
