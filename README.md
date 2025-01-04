@@ -24,10 +24,9 @@
 
 ### Types in Check box
 
-````bash const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
-setIsChecked(event.target.checked);
-};```
-````
+    ```bash const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+    };```
 
 - https://github.com/Suvrodev/Todo/blob/main/src/Layout/Pages/Task/TaskCard/TaskCard.tsx
 
@@ -36,3 +35,7 @@ setIsChecked(event.target.checked);
     ```bash const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {}```
 
 - https://github.com/Suvrodev/Todo/blob/main/src/Layout/Pages/Task/AddTaskModal/AddTaskModal.tsx
+
+```
+
+```
