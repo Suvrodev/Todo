@@ -72,7 +72,7 @@ export const taskSlice = createSlice({
       );
       // console.log("ALl Task: ", state.tasks);
     },
-    deleteTask: (state, action) => {
+    deleteTask: (state, action: PayloadAction<string>) => {
       console.log("id, ", action.payload);
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },

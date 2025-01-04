@@ -8,3 +8,8 @@ export interface ITask {
 }
 
 export type TPriority = "Low" | "Medium" | "High";
+
+export interface IUsers {
+  id: string;
+  name: string;
+}

@@ -2,6 +2,7 @@ import Main from "@/Layout/Main/Main";
 import About from "@/Layout/Pages/About/About";
 import Home from "@/Layout/Pages/Home/Home";
 import Task from "@/Layout/Pages/Task/Task";
+import User from "@/Layout/Pages/User/User";
 import { createBrowserRouter, Navigate } from "react-router";
 
 const routes = createBrowserRouter([
@@ -24,6 +25,10 @@ const routes = createBrowserRouter([
       {
         path: "/task",
         element: <Task />,
+      },
+      {
+        path: "/user",
+        element: <User />,
       },
     ],
   },

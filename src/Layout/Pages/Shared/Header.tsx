@@ -11,12 +11,16 @@ const Header = () => {
       path: "/home",
     },
     {
-      name: "About",
-      path: "/about",
-    },
-    {
       name: "Task",
       path: "/task",
+    },
+    {
+      name: "user",
+      path: "/user",
+    },
+    {
+      name: "About",
+      path: "/about",
     },
   ];
 
