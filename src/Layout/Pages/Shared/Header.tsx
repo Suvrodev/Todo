@@ -15,8 +15,12 @@ const Header = () => {
       path: "/task",
     },
     {
-      name: "user",
+      name: "User",
       path: "/user",
+    },
+    {
+      name: "Mission",
+      path: "/mission",
     },
     {
       name: "About",
