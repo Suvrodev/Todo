@@ -14,8 +14,8 @@ import { TMissionPriority } from "@/Types/types";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 const AddMissionModal = () => {
-  const [createTask, { data }] = useCreateTaskMutation();
-  console.log("Data: ", data);
+  const [createTask] = useCreateTaskMutation();
+  //   console.log("Data: ", data);
 
   const [priority, setPriority] = useState<TMissionPriority>("medium");
 
